@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProFlow Plumbing – Perth's Trusted Plumbers</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --steel: #1e3a5f;
+    --accent: #f97316;
+    --accent-light: #fb923c;
+    --water: #38bdf8;
+    --white: #f8fafc;
+    --gray: #94a3b8;
+    --light: #e2e8f0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(248,250,252,0.06);
+  }
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.6rem; letter-spacing: 1px;
+    color: var(--white);
+  }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    color: var(--gray); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--accent); color: var(--white) !important;
+    padding: 0.5rem 1.2rem; border-radius: 4px;
+    font-weight: 600 !important; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent-light) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 120px 5% 80px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(56,189,248,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(249,115,22,0.07) 0%, transparent 60%),
+      linear-gradient(160deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
+  }
+  /* pipe grid pattern */
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(248,250,252,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(248,250,252,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3);
+    color: var(--accent-light); padding: 0.35rem 0.9rem;
+    border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; }
+
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.95; letter-spacing: -1px;
+    text-transform: uppercase;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 .line-accent { color: var(--accent); display: block; }
+  h1 .line-water { color: var(--water); display: block; }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.1rem; font-weight: 300; color: var(--gray);
+    line-height: 1.7; max-width: 500px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-actions {
+    margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: white;
+    padding: 0.9rem 2rem; border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    text-decoration: none; border: 2px solid rgba(248,250,252,0.2);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(248,250,252,0.05); }
+
+  .hero-stats {
+    margin-top: 3.5rem; display: flex; gap: 3rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem; font-weight: 900; color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.78rem; color: var(--gray); letter-spacing: 0.5px; margin-top: 0.2rem; }
+
+  /* floating pipe icon */
+  .hero-graphic {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: min(420px, 40vw);
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.9;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(-50%) translateY(0); }
+    50% { transform: translateY(-50%) translateY(-18px); }
+  }
+
+  /* ── EMERGENCY BANNER ── */
+  .emergency {
+    background: linear-gradient(90deg, #7f1d1d, var(--accent), #7f1d1d);
+    background-size: 200%;
+    animation: shimmer 4s linear infinite;
+    padding: 0.9rem 5%;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    text-align: center;
+  }
+  @keyframes shimmer { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+  .emergency strong { font-weight: 700; }
+  .emergency a { color: white; font-weight: 700; text-decoration: underline; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 5%; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    text-transform: uppercase; line-height: 1.05; letter-spacing: -0.5px;
+  }
+  .section-title span { color: var(--water); }
+
+  /* ── SERVICES ── */
+  .services { background: var(--navy-mid); }
+  .services-header { text-align: center; margin-bottom: 4rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: rgba(248,250,252,0.06);
+    border: 1px solid rgba(248,250,252,0.06);
+  }
+  .service-card {
+    background: var(--navy-mid);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { background: var(--steel); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 48px; height: 48px; margin-bottom: 1.25rem;
+    color: var(--accent);
+  }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 0.75rem;
+  }
+  .service-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.7; }
+
+  /* ── WHY US ── */
+  .why {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+  }
+  .why-visual {
+    position: relative;
+  }
+  .why-img-box {
+    background: var(--steel);
+    border-radius: 4px;
+    aspect-ratio: 4/5;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-img-box svg { width: 60%; opacity: 0.3; }
+  .why-badge-box {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--accent);
+    padding: 1.5rem; border-radius: 4px;
+    text-align: center;
+  }
+  .why-badge-box .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.8rem; font-weight: 900; line-height: 1;
+  }
+  .why-badge-box .lbl { font-size: 0.75rem; font-weight: 600; line-height: 1.3; margin-top: 0.25rem; }
+  .why-points { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-point { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-point-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.25);
+    border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+  .why-point h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 0.25rem;
+  }
+  .why-point p { font-size: 0.875rem; color: var(--gray); line-height: 1.6; }
+
+  /* ── PROCESS ── */
+  .process { background: var(--navy-mid); text-align: center; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 2.2rem; left: 12.5%; right: 12.5%; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--water));
+  }
+  .step { padding: 0 1.5rem; }
+  .step-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent); color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .step h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 0.5rem;
+  }
+  .step p { font-size: 0.85rem; color: var(--gray); line-height: 1.65; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {}
+  .testimonials-header { margin-bottom: 3.5rem; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .testimonial-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(248,250,252,0.07);
+    padding: 2rem; border-radius: 4px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 6rem; font-weight: 900; color: var(--accent);
+    position: absolute; top: -0.5rem; left: 1.5rem;
+    line-height: 1; opacity: 0.4;
+  }
+  .stars { color: #fbbf24; font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .testimonial-card blockquote {
+    font-size: 0.9rem; color: var(--light); line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+  .reviewer-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--steel); display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.9rem;
+    color: var(--accent);
+  }
+  .reviewer-name { font-weight: 600; font-size: 0.85rem; }
+  .reviewer-loc { font-size: 0.75rem; color: var(--gray); }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--steel) 0%, var(--navy-mid) 100%);
+    border-top: 1px solid rgba(56,189,248,0.15);
+    border-bottom: 1px solid rgba(56,189,248,0.15);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 100% at 50% 50%, rgba(249,115,22,0.07), transparent);
+  }
+  .cta-section .inner { position: relative; z-index: 1; }
+  .cta-phone {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900;
+    color: var(--accent); letter-spacing: -1px; line-height: 1;
+    margin: 1rem 0;
+    display: block; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .cta-phone:hover { color: var(--accent-light); }
+  .cta-note { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070f1c;
+    padding: 3rem 5% 2rem;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+  .footer-brand .logo { font-size: 1.4rem; display: block; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.85rem; color: var(--gray); line-height: 1.7; max-width: 280px; }
+  .footer-col h5 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--gray);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.5rem; }
+  .footer-col ul a { color: var(--light); font-size: 0.875rem; text-decoration: none; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid rgba(248,250,252,0.06);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: var(--gray);
+  }
+  .footer-bottom a { color: var(--gray); text-decoration: none; }
+  .license-badge {
+    background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.2);
+    color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 100px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .hero-graphic { display: none; }
+    .why { grid-template-columns: 1fr; gap: 3rem; }
+    .why-visual { display: none; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Pro<span>Flow</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a class="nav-cta" href="#contact">Book a Job</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Perth's #1 Rated Plumber</div>
+    <h1>
+      No Drip
+      <span class="line-accent">Too Small.</span>
+      <span class="line-water">No Burst</span>
+      Too Big.
+    </h1>
+    <p class="hero-sub">
+      Fast, reliable plumbing for Perth homes and businesses. Available 7 days — same-day bookings welcome. Fully licensed &amp; insured.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:0400000000" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.55 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6 6l.62-.62a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+        Call Now — 04 0000 0000
+      </a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">12<span>+</span></div>
+        <div class="stat-label">Years in Perth</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2<span>k+</span></div>
+        <div class="stat-label">Jobs Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">60<span>min</span></div>
+        <div class="stat-label">Avg Response Time</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- decorative SVG graphic -->
+  <svg class="hero-graphic" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- pipe illustration -->
+    <rect x="60" y="180" width="280" height="40" rx="8" fill="#1e3a5f" stroke="#38bdf8" stroke-width="2"/>
+    <rect x="60" y="180" width="280" height="40" rx="8" fill="url(#pipeGrad)"/>
+    <rect x="140" y="100" width="40" height="120" rx="8" fill="#1e3a5f" stroke="#38bdf8" stroke-width="2"/>
+    <rect x="220" y="180" width="40" height="120" rx="8" fill="#1e3a5f" stroke="#38bdf8" stroke-width="2"/>
+    <!-- valve -->
+    <circle cx="200" cy="200" r="28" fill="#0a1628" stroke="#f97316" stroke-width="3"/>
+    <circle cx="200" cy="200" r="16" fill="#f97316"/>
+    <line x1="200" y1="176" x2="200" y2="224" stroke="#0a1628" stroke-width="4" stroke-linecap="round"/>
+    <line x1="176" y1="200" x2="224" y2="200" stroke="#0a1628" stroke-width="4" stroke-linecap="round"/>
+    <!-- water drops -->
+    <ellipse cx="260" cy="320" rx="6" ry="9" fill="#38bdf8" opacity="0.7"/>
+    <ellipse cx="260" cy="345" rx="4" ry="6" fill="#38bdf8" opacity="0.4"/>
+    <!-- wrench -->
+    <path d="M310 80 L350 120 L340 132 L300 92 Z" fill="#f97316" opacity="0.8"/>
+    <circle cx="306" cy="86" r="18" fill="none" stroke="#f97316" stroke-width="6" opacity="0.8"/>
+    <!-- bubbles -->
+    <circle cx="80" cy="130" r="12" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="320" cy="320" r="8" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.3"/>
+    <circle cx="100" cy="310" r="5" fill="#38bdf8" opacity="0.2"/>
+    <defs>
+      <linearGradient id="pipeGrad" x1="60" y1="180" x2="340" y2="220" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#1e3a5f"/>
+        <stop offset="50%" stop-color="#2a4a7a"/>
+        <stop offset="100%" stop-color="#1e3a5f"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</section>
+
+<!-- EMERGENCY BANNER -->
+<div class="emergency">
+  <span>🚨</span>
+  <strong>24/7 Emergency Plumbing Available</strong>
+  <span>—</span>
+  <span>Burst pipe? Blocked drain? Call us now: <a href="tel:0400000000">04 0000 0000</a></span>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Full-Service <span>Plumbing</span></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12M8 6l4-4 4 4M4 22h16"/><path d="M8 12H4l-2 4h4M16 12h4l2 4h-4"/></svg>
+      <h3>Emergency Callouts</h3>
+      <p>Burst pipe, gas leak, or flooding — we're on-call around the clock. Typical response in under 60 minutes across Perth metro.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 8v4l3 3"/></svg>
+      <h3>Blocked Drains</h3>
+      <p>High-pressure jet blasting, CCTV drain inspection, and full clearing — we find the root cause so the problem doesn't come back.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      <h3>Hot Water Systems</h3>
+      <p>Supply, installation and repair of gas, electric, heat pump, and solar hot water systems. All major brands stocked.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/><path d="M9 21v-6h6v6"/></svg>
+      <h3>Bathroom Renovations</h3>
+      <p>Complete bathroom fit-outs, toilet replacements, shower upgrades, tap ware and vanity installs done right the first time.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v4H3zM3 10h18v4H3zM3 17h18v4H3z"/></svg>
+      <h3>Gas Fitting</h3>
+      <p>Licensed gas fitting for cooktops, BBQs, heaters and connection of appliances. Safety inspections and compliance certificates.</p>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <h3>Preventive Maintenance</h3>
+      <p>Scheduled inspections, water pressure testing, and leak detection — avoid costly repairs before they happen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why">
+    <div class="why-left">
+      <div class="section-label">Why ProFlow</div>
+      <h2 class="section-title">We Show Up.<br><span>On Time.</span><br>Every Time.</h2>
+      <p style="color: var(--gray); font-size: 0.95rem; line-height: 1.75; margin-top: 1.25rem; max-width: 460px;">
+        Perth homeowners and businesses have trusted ProFlow Plumbing since 2012. We're not a call centre — you speak directly to our licensed plumbers, and we give you a fixed price before we start work.
+      </p>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="why-point-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Upfront Fixed Pricing</h4>
+            <p>No surprise invoices. We quote before we touch a thing, and we stick to it.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-point-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4>Same-Day Availability</h4>
+            <p>Book online before 10am and we'll be there today. Emergency slots open 24/7.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-point-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h4>Licensed &amp; Fully Insured</h4>
+            <p>All work done to Australian standards. Full public liability and workmanship warranty.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="why-img-box">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 100 Q40 60 80 60 L120 60 Q160 60 160 100 Q160 140 120 140 L80 140 Q40 140 40 100Z" stroke="#38bdf8" stroke-width="3" fill="none"/>
+          <circle cx="100" cy="100" r="30" stroke="#f97316" stroke-width="3" fill="none"/>
+          <path d="M100 70 L100 130 M70 100 L130 100" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60 60 L30 30" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+          <path d="M140 60 L170 30" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="30" cy="30" r="8" fill="#38bdf8" opacity="0.5"/>
+          <circle cx="170" cy="30" r="8" fill="#38bdf8" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="why-badge-box">
+        <div class="num">★ 4.9</div>
+        <div class="lbl">Google Rating<br>from 300+ reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Booked & Fixed<br><span>In 4 Steps</span></h2>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Call or Book</h4>
+      <p>Phone us directly or use our online booking form — takes less than 60 seconds.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>We Quote</h4>
+      <p>Our plumber assesses the job and gives you a fixed price — no obligation to proceed.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Job Done Right</h4>
+      <p>Our licensed team gets to work with quality parts, keeping your home clean and tidy.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>You Pay, Sorted</div>
+      <p>Card, cash, bank transfer. Invoice emailed instantly. Workmanship guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="testimonials-header">
+    <div class="section-label">What Customers Say</div>
+    <h2 class="section-title">Real Reviews<br>from <span>Real Perth</span> Locals</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>Had a burst pipe at 11pm — ProFlow was there within 45 minutes. Professional, tidy, and the price was exactly what they quoted. Won't use anyone else.</blockquote>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SK</div>
+        <div>
+          <div class="reviewer-name">Sarah K.</div>
+          <div class="reviewer-loc">Subiaco, Perth</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>Replaced our entire hot water system in a day. Great communication, left the site spotless. Worth every cent — had three quotes and ProFlow was the most honest.</blockquote>
+      <div class="reviewer">
+        <div class="reviewer-avatar">MT</div>
+        <div>
+          <div class="reviewer-name">Mark T.</div>
+          <div class="reviewer-loc">Joondalup, Perth</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>Used ProFlow three times now for our investment properties. Tenants always happy, no call-backs. They genuinely know their stuff and show up when they say they will.</blockquote>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JL</div>
+        <div>
+          <div class="reviewer-name">Jessica L.</div>
+          <div class="reviewer-loc">South Perth</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="inner">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Ready to Fix It?</h2>
+    <a class="cta-phone" href="tel:0400000000">04 0000 0000</a>
+    <p class="cta-note">Available 7 days · Emergency callouts 24/7 · Same-day bookings</p>
+    <a href="mailto:hello@proflowplumbing.com.au" class="btn-primary">Email Us Instead</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Pro<span style="color:var(--accent)">Flow</span></span>
+      <p>Perth's trusted plumbing specialists since 2012. Licensed, insured, and genuinely local. We fix it right the first time.</p>
+      <p style="margin-top: 1rem; font-size: 0.78rem; color: var(--gray);">Lic. No. PL XXXXXX · ABN XX XXX XXX XXX</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Emergency Plumbing</a></li>
+        <li><a href="#">Blocked Drains</a></li>
+        <li><a href="#">Hot Water Systems</a></li>
+        <li><a href="#">Bathroom Renos</a></li>
+        <li><a href="#">Gas Fitting</a></li>
+        <li><a href="#">Maintenance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:0400000000">04 0000 0000</a></li>
+        <li><a href="mailto:hello@proflowplumbing.com.au">hello@proflowplumbing.com.au</a></li>
+        <li><a href="#">Perth Metro Area</a></li>
+        <li><a href="#">Mon–Sun 7am–7pm</a></li>
+        <li><a href="#">24/7 Emergencies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 ProFlow Plumbing. All rights reserved.</span>
+    <span class="license-badge">Built by Systemly</span>
+    <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
