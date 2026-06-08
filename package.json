@@ -1,0 +1,12 @@
+{
+  "name": "systemly",
+  "version": "1.0.0",
+  "description": "Systemly - Done-For-You Client Acquisition Systems",
+  "private": true,
+  "scripts": {
+    "install": "echo 'Dependencies installed'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
